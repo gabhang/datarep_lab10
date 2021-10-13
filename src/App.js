@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/navbar';
 import Container from 'react-bootstrap/container';
 import Nav from 'react-bootstrap/nav';
+import Read from './components/read';
+import Create from './components/create';
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,16 +27,16 @@ class App extends Component {
               <Navbar.Brand href="/">Navbar</Navbar.Brand>
               <Nav className="me-auto">
                 <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/footer">Footer</Nav.Link>
-                <Nav.Link href="/header">Header</Nav.Link>
+                <Nav.Link href="/read">Read</Nav.Link>
+                <Nav.Link href="/create">Create</Nav.Link>
               </Nav>
             </Container>
           </Navbar>
           <Switch>
             {/* set route to different content */}
             <Route path="/" exact><Content /></Route>
-            <Route path="/header" exact><Header /></Route>
-            <Route path="/footer" exact><Footer /></Route>
+            <Route path="/read" exact><Read /></Route>
+            <Route path="/create" exact><Create /></Route>
           </Switch>
         </div>
       </Router>
