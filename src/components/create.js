@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 // create class Read with message
 class Create extends Component {
@@ -21,12 +22,19 @@ class Create extends Component {
         alert("Movie Name: " + this.state.Title + "\nRelease Year: " + this.state.Year + "\nPoster Url: " + this.state.Poster);
         event.preventDefault(); // prevent crashing
 
-        // reset
-        this.setState({
-            Title: '',
-            Year: '',
-            Poster: ''
-        })
+        // create newMovie object
+        const newMovie = {
+            title: this.state.Title,
+            year: this.state.Year,
+            poster: this.state.Poster
+        }
+        axios.post('http://localhost:4000/api/movies', newMovie) // send newMovie object to server
+            .then((res) => {
+                console.log(res); // response to console
+            })
+            .catch((err) => {
+                console.log(err); // error to console
+            });
     }
 
     // will change name value in state when input changed
