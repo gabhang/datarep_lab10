@@ -9,7 +9,7 @@ class Read extends Component {
         // get movie information from our own api
         axios.get('http://localhost:4000/api/movies')
         .then((response)=>{
-            this.setState({mymovies:response.data.movies}) // update state
+            this.setState({mymovies:response.data}) // update state
         }) // getting http response
         .catch((error)=>{
             console.log(error);
