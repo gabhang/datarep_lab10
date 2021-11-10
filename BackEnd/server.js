@@ -23,15 +23,15 @@ app.use(bodyParser.json())
 
 // connect to mongodb
 const myConnectionString = 'mongodb+srv://admin:admin@cluster0.ovjly.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-mongoose.connect(myConnectionString, {useNewUrlParser: true});
+mongoose.connect(myConnectionString, { useNewUrlParser: true });
 
 // schema for database
 const Schema = mongoose.Schema;
 
 var movieSchema = new Schema({
-    title:String,
-    year:String,
-    poster:String
+    title: String,
+    year: String,
+    poster: String
 });
 
 // create model for database for interaction
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
 // get request from /api/movies and response with mymovies json
 app.get('/api/movies', (req, res) => {
-    // store json
+    // // store json
     // const mymovies = [
     //     {
     //         "Title": "Avengers: Infinity War",
@@ -75,11 +75,11 @@ app.get('/api/movies', (req, res) => {
     //     }
     // ]
 
-
     // find doc in database
-    MovieModel.find((err, data)=>{
+    MovieModel.find((err, data) => {
         res.json(data);
     })
+
     // // pass it to server
     // res.status(200).json({
     //     message: "Everything is ok",
@@ -88,11 +88,11 @@ app.get('/api/movies', (req, res) => {
 })
 
 // returns data (movies) in that id
-app.get('/api/movies/:id', (req,res)=>{
+app.get('/api/movies/:id', (req, res) => {
     console.log(req.params.id)
 
-    // interaction
-    MovieModel.findById(req.params.id, (err, data)=>{
+    // interaction to get data
+    MovieModel.findById(req.params.id, (err, data) => {
         res.json(data);
     })
 })
@@ -104,11 +104,11 @@ app.post('/api/movies', (req, res) => {
     console.log(req.body.year);
     console.log(req.body.poster);
 
-    // interact
+    // interact to create
     MovieModel.create({
-        title:req.body.title,
-        year:req.body.year,
-        poster:req.body.poster
+        title: req.body.title,
+        year: req.body.year,
+        poster: req.body.poster
     })
 
     // server to client to prevent duplicate creation
