@@ -4,9 +4,9 @@ import Header from './components/header'
 import Content from './components/content'
 import Footer from './components/footer'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/navbar';
-import Container from 'react-bootstrap/container';
-import Nav from 'react-bootstrap/nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 import Read from './components/read';
 import Create from './components/create';
 import {
@@ -14,6 +14,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Edit from './components/edit';
 
 class App extends Component {
   // on render
@@ -34,9 +35,10 @@ class App extends Component {
           </Navbar>
           <Switch>
             {/* set route to different content */}
-            <Route path="/" exact><Content /></Route>
-            <Route path="/read" exact><Read /></Route>
-            <Route path="/create" exact><Create /></Route>
+            <Route path="/" component={Content} exact />
+            <Route path="/read" component={Read} />
+            <Route path="/create" component={Create} />
+            <Route path="/edit/:id" component={Edit} />
           </Switch>
         </div>
       </Router>

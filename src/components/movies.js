@@ -5,8 +5,8 @@ import MovieItem from './movieItem';
 class Movies extends Component {
     render() {
         // get films and map to individual elements/film
-        return this.props.films.map((film) => {
-            return <MovieItem myfilm={film} key={film.imdbID}></MovieItem>
+        return this.props.movies.map((movie) => {
+            return <MovieItem movie={movie} key={movie.imdbID}></MovieItem>
         });
     }
 }

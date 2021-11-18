@@ -115,6 +115,27 @@ app.post('/api/movies', (req, res) => {
     res.send('Item Added');
 })
 
+// return movie with specific id
+app.get('/api/movies/:id', (req, res) => {
+    console.log(req.params.id)
+
+    MovieModel.findById(req.params.id, (err, data) => {
+        // Send data from database
+        res.json(data)
+    })
+})
+
+// update movie with a new id
+app.put('/api/movies/:id', (req, res) => {
+    console.log("Update movie: " + req.params.id)
+    console.log(req.body)
+
+    MovieModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
+        (err, data) => {
+            res.send(data)
+        })
+})
+
 // listen from port
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/card';
+import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 // create class movieItem to show movie information
 class MovieItem extends Component {
@@ -8,15 +9,16 @@ class MovieItem extends Component {
             // get every element and put into card using bootstrap
             <div>
                 <Card>
-                    <Card.Header>{this.props.myfilm.title}</Card.Header>
+                    <Card.Header>{this.props.movie.title}</Card.Header>
                     <Card.Body>
                         <blockquote>
-                            <img src={this.props.myfilm.poster}></img>
+                            <img src={this.props.movie.poster}></img>
                             <footer>
-                                {this.props.myfilm.year}
+                                {this.props.movie.year}
                             </footer>
                         </blockquote>
                     </Card.Body>
+                    <Link to={"/edit/" + this.props.movie._id} className="btn btn-primary">Edit</Link>
                 </Card>
             </div>
         )

@@ -8,23 +8,23 @@ class Read extends Component {
     componentDidMount() {
         // get movie information from our own api
         axios.get('http://localhost:4000/api/movies')
-        .then((response)=>{
-            this.setState({mymovies:response.data}) // update state
-        }) // getting http response
-        .catch((error)=>{
-            console.log(error);
-        }); // if execption happens
+            .then((response) => {
+                this.setState({ movies: response.data }) // update state
+            }) // getting http response
+            .catch((error) => {
+                console.log(error);
+            }); // if execption happens
     }
-    
+
     state = {
-        mymovies: []
+        movies: []
     };
 
     render() {
         return (
             <div>
                 <h2>This is my Read component!</h2>
-                <Movies films={this.state.mymovies}></Movies>
+                <Movies movies={this.state.movies}></Movies>
             </div>
         )
     }
