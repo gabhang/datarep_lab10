@@ -6,7 +6,7 @@ class Movies extends Component {
     render() {
         // get films and map to individual elements/film
         return this.props.movies.map((movie) => {
-            return <MovieItem movie={movie} key={movie.imdbID}></MovieItem>
+            return <MovieItem movie={movie} key={movie._id} ReloadData={this.props.ReloadData}></MovieItem>
         });
     }
 }

@@ -136,6 +136,19 @@ app.put('/api/movies/:id', (req, res) => {
         })
 })
 
+// listen from http that has delete method
+app.delete('/api/movies/:id', (req, res) => {
+    console.log("Deleting: " + req.params.id);
+
+    // delete record
+    MovieModel.deleteOne({ _id: req.params.id },
+        (error, data) => {
+            if (error)
+                res.send(error)
+            res.send(data);
+        })
+})
+
 // listen from port
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
