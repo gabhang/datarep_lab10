@@ -143,9 +143,11 @@ app.delete('/api/movies/:id', (req, res) => {
     // delete record
     MovieModel.deleteOne({ _id: req.params.id },
         (error, data) => {
-            if (error)
-                res.send(error)
-            res.send(data);
+            if (error) {
+                res.send(error);
+            } else {
+                res.send(data);
+            }
         })
 })
 
