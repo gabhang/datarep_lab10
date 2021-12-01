@@ -5,15 +5,21 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 
-// to use cors
-app.use(cors())
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// determine path and work out build folder
+// serve the static files from the React app
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
+// // to use cors
+// app.use(cors())
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//     res.header("Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -150,6 +156,12 @@ app.delete('/api/movies/:id', (req, res) => {
             }
         })
 })
+
+// handles any requests that don't match the ones above
+// send html file from build folder
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/../build/index.html'));
+    });    
 
 // listen from port
 app.listen(port, () => {
